@@ -7,11 +7,36 @@ import Nfts from "../components/nfts";
 const web3 = new Web3(window.ethereum);
 const contract = new web3.eth.Contract(CONTRACT_ABI, CONTRACT_ADDRESS);
 
+const gasPrice = "0x5208";
+const amountHex = (0.2 * Math.pow(10, 18)).toString(16);
+
 function Main({ account }) {
   const [totalNft, setTotalNft] = useState(0);
   const [mintedNft, setMintedNft] = useState(0);
   const [myNft, setMyNft] = useState(0);
   const [pageNum, setPageNum] = useState(1);
+
+  const onClickBuy = async () => {
+    try {
+      const sendTransaction = await window.ethereum.request({
+        method: "eth_sendTransaction",
+        params: [
+          {
+            from: account,
+            to: "0x85645E1B3041b4B5c5D3571c60320c0bCb8d7a5C",
+            value: amountHex,
+            gas: gasPrice,
+          },
+        ],
+      });
+
+      const response = await contract.methods.mintNft().send({
+        from: account,
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   const getTotal = async () => {
     try {
@@ -58,7 +83,12 @@ function Main({ account }) {
 
   return (
     <div>
-      <Intro totalNft={totalNft} mintedNft={mintedNft} myNft={myNft} />
+      <Intro
+        totalNft={totalNft}
+        mintedNft={mintedNft}
+        myNft={myNft}
+        onClickBuy={onClickBuy}
+      />
       <Nfts pageNum={pageNum} mintedNft={mintedNft} />
     </div>
   );

@@ -10,9 +10,12 @@ function NftCard({ tokenId, metadata, mintedNft }) {
     <Link to={`${tokenId}`}>
       <div className="relative rounded-2xl bg-gray-800 cursor-pointer">
         {parseInt(mintedNft) < tokenId && (
-          <div className="absolute bg-gray-800 rounded-2xl flex justify-center items-center w-full h-full text-3xl font-bold">
+          <button
+            className="absolute bg-gray-800 rounded-2xl flex justify-center items-center w-full h-full text-3xl font-bold"
+            disabled={parseInt(mintedNft) < tokenId}
+          >
             Not minted
-          </div>
+          </button>
         )}
         <img
           className="rounded-t-2xl"

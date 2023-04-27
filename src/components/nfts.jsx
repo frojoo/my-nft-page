@@ -23,7 +23,6 @@ function Nfts({ pageNum, mintedNft }) {
       }
 
       setNfts(nftArray);
-      console.log(nftArray);
     } catch (error) {
       console.error(error);
     }

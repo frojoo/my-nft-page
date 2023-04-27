@@ -18,7 +18,7 @@ function Header({ account, setAccount }) {
     setHover(false);
   };
 
-  const onClickAcocunt = async () => {
+  const onClickAccount = async () => {
     try {
       const connectAccount = await window.ethereum.request({
         method: "eth_requestAccounts",
@@ -124,7 +124,7 @@ function Header({ account, setAccount }) {
         ) : (
           <button
             className="bg-slate-800 rounded-full p-2 flex items-center hover:bg-opacity-80 ml-4"
-            onClick={onClickAcocunt}
+            onClick={onClickAccount}
           >
             <div className="bg-emerald-200 w-6 h-6 rounded-full flex justify-center items-center">
               <BiWallet size={20} color="navy" />
