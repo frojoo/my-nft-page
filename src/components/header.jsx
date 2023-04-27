@@ -8,6 +8,15 @@ import axios from "axios";
 function Header({ account, setAccount }) {
   const [coinPrice, setCoinPrice] = useState("");
   const [myBalance, setMyBalance] = useState("");
+  const [hover, setHover] = useState(false);
+
+  const onMouseOver = () => {
+    setHover(true);
+  };
+
+  const onMouseOut = () => {
+    setHover(false);
+  };
 
   const onClickAcocunt = async () => {
     try {
@@ -16,7 +25,6 @@ function Header({ account, setAccount }) {
       });
 
       setAccount(connectAccount[0]);
-      console.log(window.ethereum);
     } catch (error) {
       console.error(error);
     }
@@ -70,20 +78,21 @@ function Header({ account, setAccount }) {
         </button>
       </Link>
       <div className="flex items-center">
-        {/* {coinPrice &&
+        {coinPrice &&
           coinPrice.map((v, i) => {
             return (
               <div key={i} className="text-slate-100 ml-2">
                 {v.symbol}: {v.price.toLocaleString()}￦
               </div>
             );
-          })} */}
+          })}
 
         {account ? (
           <button
-            className="hover:opacity-70"
             onClick={onClickBalance}
             title={account}
+            onMouseOver={onMouseOver}
+            onMouseOut={onMouseOut}
           >
             <div className="bg-slate-800 rounded-full p-2 flex items-center pointer-events-none ml-4 text-emerald-200">
               {myBalance ? (
@@ -99,8 +108,14 @@ function Header({ account, setAccount }) {
                     <IoWalletOutline size={20} color="black" />
                   </div>
                   <div className="ml-2">
-                    {account.substring(0, 5)}...
-                    {account.substring(account.length - 4)}
+                    {hover ? (
+                      <div>My Balance</div>
+                    ) : (
+                      <div>
+                        {account.substring(0, 5)}...
+                        {account.substring(account.length - 4)}
+                      </div>
+                    )}
                   </div>
                 </>
               )}
