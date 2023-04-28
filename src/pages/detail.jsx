@@ -46,11 +46,11 @@ function Detail() {
                 <div className="flex items-center mt-1 text-3xl font-bold">
                   <FaEthereum size={24} color="skyblue" />
                   {bg == "white" && face == "black" && line == "none" ? (
-                    <span>2.89 tMATIC</span>
+                    <span>1.89 tMATIC</span>
                   ) : (bg === "white" && face == "black") || line == "none" ? (
-                    <span>1.34 tMATIC</span>
+                    <span>0.68 tMATIC</span>
                   ) : bg == "white" || face == "black" || line == "none" ? (
-                    <span>0.67 tMATIC</span>
+                    <span>0.24 tMATIC</span>
                   ) : (
                     <span>0.12 tMATIC</span>
                   )}
