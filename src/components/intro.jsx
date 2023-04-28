@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { CONTRACT_ADDRESS } from "../web3.config";
 import { TbClover } from "react-icons/tb";
 import Music from "./music";
