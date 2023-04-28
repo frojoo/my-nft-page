@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { CONTRACT_ADDRESS } from "../web3.config";
 import { TbClover } from "react-icons/tb";
+import Music from "./music";
 
 const ranNum = Math.floor(Math.random() * 50) + 1;
 const ranImg = `${process.env.REACT_APP_IMAGE_URL}/${ranNum}.png`;
@@ -13,6 +14,11 @@ const luckyText =
 function Intro({ totalNft, mintedNft, myNft, onClickBuy, luckyNft }) {
   const [showMore, setShowMore] = useState(false);
   const [hover, setHover] = useState(false);
+  const [toggle, setToggle] = useState(false);
+
+  const onClickToggle = () => {
+    setToggle(!toggle);
+  };
 
   const onMouseOver = () => {
     setHover(true);
@@ -36,14 +42,21 @@ function Intro({ totalNft, mintedNft, myNft, onClickBuy, luckyNft }) {
             alt="intro"
           />
           <div className="realtive max-w-screen-xl mx-auto">
-            <img
-              className="absolute w-40 h-40 rounded-xl"
-              src={ranImg}
-              alt="random"
-            />
+            <button
+              className="absolute hover:opacity-80"
+              onClick={onClickToggle}
+              title="Play Music"
+            >
+              <img className="w-40 h-40 rounded-xl" src={ranImg} alt="random" />
+            </button>
             <div className="w-40 h-40 rounded-xl flex justify-center items-center bg-white">
               Loading...
             </div>
+            {toggle && (
+              <div className="absolute top-1 z-10 left-72">
+                <Music />
+              </div>
+            )}
           </div>
           <div className="mt-3 flex items-center gap-2">
             <div className="text-4xl font-bold">Marshmello</div>

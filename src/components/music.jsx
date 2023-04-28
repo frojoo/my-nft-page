@@ -10,7 +10,7 @@ function Music() {
       //밑에서 더 설명하겠습니다.
       opts={{
         width: "350",
-        height: "200",
+        height: "220",
         playerVars: {
           autoplay: 1, //자동재생 O
           rel: 0, //관련 동영상 표시하지 않음 (근데 별로 쓸모 없는듯..)
