@@ -9,7 +9,7 @@ const web3 = new Web3(window.ethereum);
 const contract = new web3.eth.Contract(CONTRACT_ABI, CONTRACT_ADDRESS);
 
 const gasPrice = "0x5208";
-const amountHex = (1.5 * Math.pow(10, 18)).toString(16);
+const amountHex = (0.8 * Math.pow(10, 18)).toString(16);
 
 function Main({ account }) {
   const [totalNft, setTotalNft] = useState(0);

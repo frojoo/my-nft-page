@@ -9,7 +9,7 @@ const text = ` Marshmello is an American electronic music producer and DJ. His s
  Marshmello wears a custom white helmet, resembling a marshmallow, for public appearances and in his music videos. His identity was initially a secret.
  These NFTs were made with reference to his custom helmet. Please note that these are not the official NFTs.\n`;
 const luckyText =
-  "🍀Try Your Luck!\n 목록에 없는 NFT를 직접 민팅해보세요. 구매하는 것보다 좋은 결과가 나올 수 있습니다.\n 1.5 tMATIC으로 행운의 주인공이 되세요.";
+  "🍀Try Your Luck!\n 목록에 없는 NFT를 직접 민팅해보세요. 구매하는 것보다 좋은 결과가 나올 수 있습니다.\n 0.8 tMATIC으로 행운의 주인공이 되세요.";
 
 function Intro({ totalNft, mintedNft, myNft, onClickBuy, luckyNft }) {
   const [showMore, setShowMore] = useState(false);

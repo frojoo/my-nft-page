@@ -41,13 +41,13 @@ function NftCard({ tokenId, metadata, mintedNft }) {
             <div className="flex font-bold pb-4 mt-1 items-center">
               <FaEthereum size={18} color="skyblue" />
               {bg == "white" && face == "black" && line == "none" ? (
-                <span>3.89 tMATIC</span>
+                <span>2.89 tMATIC</span>
               ) : (bg === "white" && face == "black") || line == "none" ? (
-                <span>2.67 tMATIC</span>
+                <span>1.34 tMATIC</span>
               ) : bg == "white" || face == "black" || line == "none" ? (
-                <span>1.09 tMATIC</span>
+                <span>0.67 tMATIC</span>
               ) : (
-                <span>0.09 tMATIC</span>
+                <span>0.12 tMATIC</span>
               )}
             </div>
           )}
