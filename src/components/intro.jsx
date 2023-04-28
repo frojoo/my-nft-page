@@ -16,10 +16,12 @@ function Intro({ totalNft, mintedNft, myNft, onClickBuy, luckyNft }) {
   const [hover, setHover] = useState(false);
   const [toggle, setToggle] = useState(false);
 
+  //동영상 토글
   const onClickToggle = () => {
     setToggle(!toggle);
   };
 
+  //호버
   const onMouseOver = () => {
     setHover(true);
   };
@@ -28,6 +30,7 @@ function Intro({ totalNft, mintedNft, myNft, onClickBuy, luckyNft }) {
     setHover(false);
   };
 
+  //더보기 토글
   const toggleShowMore = () => {
     setShowMore(!showMore);
   };
@@ -41,6 +44,7 @@ function Intro({ totalNft, mintedNft, myNft, onClickBuy, luckyNft }) {
             src={`${process.env.PUBLIC_URL}/images/marshmello intro.png`}
             alt="intro"
           />
+
           <div className="realtive max-w-screen-xl mx-auto">
             <button
               className="absolute hover:opacity-80"
@@ -58,6 +62,7 @@ function Intro({ totalNft, mintedNft, myNft, onClickBuy, luckyNft }) {
               </div>
             )}
           </div>
+
           <div className="mt-3 flex items-center gap-2">
             <div className="text-4xl font-bold">Marshmello</div>
             <div className="bg-white w-6 h-6 rounded-md flex justify-center items-center">
@@ -73,6 +78,7 @@ function Intro({ totalNft, mintedNft, myNft, onClickBuy, luckyNft }) {
             by
             <div className="text-emerald-200 ml-2">{CONTRACT_ADDRESS}</div>
           </div>
+
           <div className="relative z-20 mt-2 max-w-screen-md text-gray-300">
             {showMore ? (
               <>
@@ -98,6 +104,7 @@ function Intro({ totalNft, mintedNft, myNft, onClickBuy, luckyNft }) {
               </>
             )}
           </div>
+
           <div className="flex text-center gap-3 mt-4 text-slate-100">
             <div>
               <div className="font-bold text-xl">{totalNft}</div>
@@ -113,6 +120,7 @@ function Intro({ totalNft, mintedNft, myNft, onClickBuy, luckyNft }) {
             </div>
           </div>
         </div>
+
         <div className="flex flex-col justify-end items-end">
           <div className="mr-12 mb-4 flex flex-col justify-center items-center">
             {luckyNft && (

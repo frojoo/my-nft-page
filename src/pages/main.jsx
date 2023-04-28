@@ -18,12 +18,15 @@ function Main({ account }) {
   const [pageNum, setPageNum] = useState(1);
   const [luckyNft, setLuckyNft] = useState();
 
+  //럭키 민팅
   const onClickBuy = async () => {
     try {
       if (!account) {
         alert("지갑을 연결해주세요");
         return;
       }
+
+      //코인 전송
       const sendTransaction = await window.ethereum.request({
         method: "eth_sendTransaction",
         params: [
@@ -37,12 +40,14 @@ function Main({ account }) {
       });
       if (!sendTransaction) return;
 
+      //전송 후 민팅
       const response = await contract.methods.mintNft().send({
         from: account,
       });
 
       if (!response) return;
 
+      //민팅된 이미지 불러오기
       const balanceOf = await contract.methods.balanceOf(account).call();
       const tokenOfOwnerByIndex = await contract.methods
         .tokenOfOwnerByIndex(account, parseInt(balanceOf) - 1)
@@ -58,6 +63,7 @@ function Main({ account }) {
     }
   };
 
+  //총량
   const getTotal = async () => {
     try {
       if (!contract) return;
@@ -69,6 +75,8 @@ function Main({ account }) {
       console.error(error);
     }
   };
+
+  //발행량
   const getMinted = async () => {
     try {
       if (!contract) return;
@@ -81,6 +89,8 @@ function Main({ account }) {
       console.error(error);
     }
   };
+
+  //소유 개수
   const getMine = async () => {
     try {
       if (!contract || !account) return;
