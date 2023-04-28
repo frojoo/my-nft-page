@@ -38,7 +38,6 @@ function Header({ account, setAccount }) {
       });
 
       const wei = parseInt(getBalance, 16);
-      const gwei = wei / Math.pow(10, 9);
       const eth = wei / Math.pow(10, 18);
 
       setMyBalance(eth.toFixed(4));

@@ -10,7 +10,7 @@ const text = ` Marshmello is an American electronic music producer and DJ. His s
 const luckyText =
   "🍀Try Your Luck!\n 목록에 없는 NFT를 직접 민팅해보세요. 구매하는 것보다 좋은 결과가 나올 수 있습니다.\n 1.5 tMATIC으로 행운의 주인공이 되보세요.";
 
-function Intro({ totalNft, mintedNft, myNft, onClickBuy }) {
+function Intro({ totalNft, mintedNft, myNft, onClickBuy, luckyNft }) {
   const [showMore, setShowMore] = useState(false);
   const [hover, setHover] = useState(false);
 
@@ -55,6 +55,7 @@ function Intro({ totalNft, mintedNft, myNft, onClickBuy }) {
               />
             </div>
           </div>
+
           <div className="relative z-20 flex itmes-center mt-4">
             by
             <div className="text-emerald-200 ml-2">{CONTRACT_ADDRESS}</div>
@@ -84,7 +85,6 @@ function Intro({ totalNft, mintedNft, myNft, onClickBuy }) {
               </>
             )}
           </div>
-
           <div className="flex text-center gap-3 mt-4 text-slate-100">
             <div>
               <div className="font-bold text-xl">{totalNft}</div>
@@ -101,6 +101,15 @@ function Intro({ totalNft, mintedNft, myNft, onClickBuy }) {
           </div>
         </div>
         <div className="flex flex-col justify-end items-end">
+          <div className="mr-12 mb-4 flex flex-col justify-center items-center">
+            {luckyNft && (
+              <img
+                className="w-32 h-32 rounded-xl shadow-md"
+                src={luckyNft.image}
+                alt={luckyNft.name}
+              />
+            )}
+          </div>
           {hover ? (
             <div className="bg-slate-700 text-emerald-200 p-4 rounded-2xl w-64 mb-3">
               <div className="whitespace-pre-wrap">{luckyText}</div>
@@ -108,6 +117,7 @@ function Intro({ totalNft, mintedNft, myNft, onClickBuy }) {
           ) : (
             ""
           )}
+
           <div className="bg-emerald-200 text-slate-800 px-2 py-1 font-bold rounded-md mr-10">
             <button
               className="flex items-center text-xl text-end"

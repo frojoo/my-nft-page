@@ -3,21 +3,27 @@ import Intro from "../components/intro";
 import Web3 from "web3";
 import { CONTRACT_ABI, CONTRACT_ADDRESS } from "../web3.config";
 import Nfts from "../components/nfts";
+import axios from "axios";
 
 const web3 = new Web3(window.ethereum);
 const contract = new web3.eth.Contract(CONTRACT_ABI, CONTRACT_ADDRESS);
 
 const gasPrice = "0x5208";
-const amountHex = (0.2 * Math.pow(10, 18)).toString(16);
+const amountHex = (0.02 * Math.pow(10, 18)).toString(16);
 
 function Main({ account }) {
   const [totalNft, setTotalNft] = useState(0);
   const [mintedNft, setMintedNft] = useState(0);
   const [myNft, setMyNft] = useState(0);
   const [pageNum, setPageNum] = useState(1);
+  const [luckyNft, setLuckyNft] = useState();
 
   const onClickBuy = async () => {
     try {
+      if (!account) {
+        alert("지갑을 연결해주세요");
+        return;
+      }
       const sendTransaction = await window.ethereum.request({
         method: "eth_sendTransaction",
         params: [
@@ -29,10 +35,24 @@ function Main({ account }) {
           },
         ],
       });
+      if (!sendTransaction) return;
 
       const response = await contract.methods.mintNft().send({
         from: account,
       });
+
+      if (!response) return;
+
+      const balanceOf = await contract.methods.balanceOf(account).call();
+      const tokenOfOwnerByIndex = await contract.methods
+        .tokenOfOwnerByIndex(account, parseInt(balanceOf) - 1)
+        .call();
+      const tokenUri = await contract.methods
+        .tokenURI(tokenOfOwnerByIndex)
+        .call();
+      const result = await axios.get(tokenUri);
+
+      setLuckyNft(result.data);
     } catch (error) {
       console.error(error);
     }
@@ -88,6 +108,7 @@ function Main({ account }) {
         mintedNft={mintedNft}
         myNft={myNft}
         onClickBuy={onClickBuy}
+        luckyNft={luckyNft}
       />
       <Nfts pageNum={pageNum} mintedNft={mintedNft} />
     </div>

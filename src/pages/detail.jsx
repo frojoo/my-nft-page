@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import { FaEthereum } from "react-icons/fa";
 import { MdOutlineDescription } from "react-icons/md";
 
-function Detail({ account }) {
+function Detail() {
   const [metadata, setMetadata] = useState();
   const [bg, setBg] = useState("");
   const [face, setFace] = useState("");
